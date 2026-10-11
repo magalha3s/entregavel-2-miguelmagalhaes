@@ -34,11 +34,10 @@ A execução deve ocorrer a partir da raiz do projeto, em um ambiente com suport
 
 ## Navegação
 
-| Tecla  |  Função          |   |   |   |
-|--------|------------------|---|---|---|
-| Espaço | Avançar Imagem   |   |   |   |
-| q      | Sair do Programa |   |   |   |
-|        |                  |   |   |   |
+| Tecla  |  Função          |
+|--------|------------------|
+| Espaço | Avançar Imagem   |
+| q      | Sair do Programa |
 
 As demais teclas não alteram o estado do programa.
 ## Identificação das classes
