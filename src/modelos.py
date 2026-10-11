@@ -13,9 +13,9 @@ class Detection:
     def draw(self,file):
         height, width, channels = file.shape
         if 0 <= self.x_min and self.x_min < self.x_max and self.x_max < width and 0 <= self.y_min and self.y_min < self.y_max and self.y_max < height:
-            cv.rectangle(file,(self.x_min,self.y_min),(self.x_max,self.y_max),COLORS[self.class_id],1)
+            cv.rectangle(file,(self.x_min,self.y_min),(self.x_max,self.y_max),COLORS[self.class_id],2)
         else:
-            raise ValueError(f"{self.class_id} {self.x_max} {self.y_min} {self.x_max} {self.x_min}")
+            raise ValueError(f"{self.class_id} {self.x_min} {self.y_min} {self.x_max} {self.x_min}")
 
 class AnotatedImage:
     def __init__(self,path):
@@ -47,9 +47,13 @@ class AnotatedImage:
         cv.imwrite(Path("resultados/") / self.file_name(),self.file)
 
     def show(self):
-        #cv.namedWindow(self.file_name(), cv.WINDOW_KEEPRATIO)
+        height, width, channels = self.file.shape
+        height*=0.9
+        width*=0.9
+        cv.namedWindow(self.file_name(), cv.WINDOW_KEEPRATIO)
         cv.imshow(self.file_name(), self.file)
-        #cv.resizeWindow(self.file_name(), 1000, 800)
+        cv.resizeWindow(self.file_name(), int(width), int(height))
+        cv.moveWindow(self.file_name(), (1920-int(width)) // 2 , (1080-int(height)) // 2 )
 
     def close(self):
         cv.destroyWindow(self.file_name())

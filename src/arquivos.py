@@ -23,8 +23,11 @@ def csv_read() -> dict:
     
     # Organize the CSV data per image in a Dict
     for line in raw_data:
-        line=[line[0]]+convert_int(line[1:])
-        storage[line[0]]=storage.get(line[0],[])+[line[1:]]
+        try:
+            line=[line[0]]+convert_int(line[1:])
+            storage[line[0]]=storage.get(line[0],[])+[line[1:]]
+        except ValueError:
+            raise ValueError(f"Invalid Value in Line: {line}")
     return  storage
 
 def cwd() -> Path:
